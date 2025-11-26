@@ -1,6 +1,6 @@
 
 :root {
-    --primary-color: #3498db;
+    --primary-color: #ba0303;
     --primary-color-dark: #2980b9; 
     --secondary-color: #f1c40f; 
     
@@ -29,7 +29,6 @@ body {
     margin: 0;
 }
 
-/* --- Layout --- */
 .container {
     max-width: 1200px;
     margin: 20px auto;
@@ -111,7 +110,6 @@ footer {
     background-color: #e6b300;
 }
 
-/* Cor Cancelar/Voltar */
 .btn-cancel {
     background-color: #ccc;
     color: var(--text-color);
