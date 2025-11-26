@@ -1,4 +1,6 @@
 from bottle import request
+from passlib.handlers.pbkdf2 import pbkdf2_sha256
+
 from models.user import UserModel, User
 
 class UserService:
@@ -16,9 +18,9 @@ class UserService:
         new_id = last_id + 1
         name = request.forms.get('name')
         email = request.forms.get('email')
-        birthdate = request.forms.get('birthdate')
+        password_hash = pbkdf2_sha256.hash(request.forms.get('password'))
 
-        user = User(id=new_id, name=name, email=email, birthdate=birthdate)
+        user = User(id=new_id, name=name, email=email, password=password_hash)
         self.user_model.add_user(user)
 
 
@@ -26,14 +28,18 @@ class UserService:
         return self.user_model.get_by_id(user_id)
 
 
+    def get_by_email(self, email):
+        return self.user_model.get_by_email(email)
+
+
     def edit_user(self, user):
         name = request.forms.get('name')
         email = request.forms.get('email')
-        birthdate = request.forms.get('birthdate')
+        password_hash = pbkdf2_sha256.hash(request.forms.get('password'))
 
         user.name = name
         user.email = email
-        user.birthdate = birthdate
+        user.password = password_hash
 
         self.user_model.update_user(user)
 
