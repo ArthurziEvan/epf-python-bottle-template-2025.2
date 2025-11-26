@@ -18,7 +18,9 @@ class RoomController(BaseController):
     def setup_routes(self):
         self.app.route('/rooms', method='GET', callback=self.list_rooms)
         self.app.route('/rooms/add', method=['GET', 'POST'], callback=self.add_room)
-        self.app.route('/rooms/delete/<room_id:int>', method='POST', callback=self.delete_room)
+        self.app.route('/rooms/delete/<room_id>', method='POST', callback=self.delete_room)
+
+        self.app.route('/rooms/<room_id>', method=['GET', 'POST'], callback=self.room)
 
     def list_rooms(self):
         rooms = self.room_service.get_all()
@@ -35,6 +37,11 @@ class RoomController(BaseController):
     def delete_room(self, room_id):
         self.room_service.delete_room(room_id)
         self.redirect('/rooms')
+
+    def room(self, room_id):
+
+        room = self.room_service.get_by_id(room_id)
+        return self.render('room', room=room)
 
     def sort(self, room_id):
         try:

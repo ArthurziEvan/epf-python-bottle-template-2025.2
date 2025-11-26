@@ -1,0 +1,10 @@
+% rebase('layout.tpl', title='Criar Grupo')
+
+<h1>Criar um Grupo</h1>
+
+<form action="/rooms/add" method="post" class="form">
+    <label for="name">Nome do Grupo:</label>
+    <input type="text" id="name" name="name" required>
+
+    <button type="submit">Criar</button>
+</form>
