@@ -1,8 +1,8 @@
 import random
+import string
 
 from bottle import request
 
-from models import room
 from models.room import RoomModel, Room
 
 class RoomService:
@@ -16,8 +16,15 @@ class RoomService:
 
 
     def save(self):
-        last_id = max([r.id for r in self.room_model.get_all()], default=0)
-        new_id = last_id + 1
+
+        keys = string.ascii_uppercase + string.digits
+
+        while True:
+            new_id = ''.join(random.choice(keys) for _ in range(6))
+
+            if all(r.id != new_id for r in self.room_model.get_all()):
+                break
+
         name = request.forms.get('name')
         host_id = request.forms.get('host_id')
 

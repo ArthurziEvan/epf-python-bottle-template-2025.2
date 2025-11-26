@@ -60,7 +60,7 @@ class RoomModel:
         return self.rooms
 
 
-    def get_by_id(self, room_id: int):
+    def get_by_id(self, room_id: str):
         return next((u for u in self.rooms if u.id == room_id), None)
 
     def add_room(self, room: Room):
@@ -74,6 +74,6 @@ class RoomModel:
                 self._save()
                 break
 
-    def delete_room(self, room_id: int):
+    def delete_room(self, room_id: str):
         self.rooms = [r for r in self.rooms if r.id != room_id]
         self._save()
