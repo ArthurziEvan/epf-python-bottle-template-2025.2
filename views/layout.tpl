@@ -44,11 +44,7 @@
         % end
 
         {{!base}}
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Amigo Oculto</p>
-    </footer>
+    </dive
 
     <script src="/static/js/main.js"></script>
 </body>
