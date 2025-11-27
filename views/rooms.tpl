@@ -14,6 +14,7 @@
                     <th>Nome</th>
                     <th>Dono (Host)</th>
                     <th><i class="fas fa-user-friends"></i> Participantes</th>
+                    <th>Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -24,10 +25,9 @@
                     <td>{{room.name}}</td>
                     <td>{{room.host_id}}</td>
                     <td>{{len(room.members)}}</td>
+                    <td>{{'Sorteado' if room.sorted else 'Pendente'}}</td>
                     <td class="actions">
                         <a href="/rooms/{{room.id}}" class="btn btn-sm btn-edit"><i class="fas fa-door-open"></i> Acessar</a>
-                        <a href="/rooms/{{room.id}}/edit" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Editar</a>
-                        
                         <form action="/rooms/delete/{{room.id}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar o grupo {{room.name}}?')">
                             <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
                         </form>
