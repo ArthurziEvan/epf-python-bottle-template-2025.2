@@ -1,8 +1,8 @@
 [
     {
-        "id": 1,
-        "name": "RafaelArniqueiras",
-        "email": "xingxungu2601@gmail.com",
-        "password": "$pbkdf2-sha256$29000$GkOIMcZY611rbQ2h1FoLYQ$zyfjtEbEScRwBHfji10NjshXSvVue.7eOfpvm5BKktY"
+        "id": 2,
+        "name": "Arthur Evangelista da SIlva",
+        "email": "arthur03655@gmail.com",
+        "password": "$pbkdf2-sha256$29000$TcnZO.cco/Tem3OO8X5vzQ$rlI2zKlnvzBSWdeUYEqNvW2LdqZyVkE1/7HzAwkD1.4"
     }
 ]
