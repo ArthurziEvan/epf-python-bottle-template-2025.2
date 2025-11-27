@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import Bottle, request, redirect
 from .base_controller import BaseController
 from services.user_service import UserService
 
@@ -10,12 +10,14 @@ class UserController(BaseController):
         self.user_service = UserService()
 
 
-    # Rotas User
     def setup_routes(self):
         self.app.route('/users', method='GET', callback=self.list_users)
-        self.app.route('/users/add', method=['GET', 'POST'], callback=self.add_user)
+        self.app.route('/register', method=['GET', 'POST'], callback=self.register)
         self.app.route('/users/edit/<user_id:int>', method=['GET', 'POST'], callback=self.edit_user)
         self.app.route('/users/delete/<user_id:int>', method='POST', callback=self.delete_user)
+
+        self.app.route('/login', method=['GET', 'POST'], callback=self.login)
+        self.app.route('/logout', method='GET', callback=self.logout)
 
 
     def list_users(self):
@@ -23,13 +25,39 @@ class UserController(BaseController):
         return self.render('users', users=users)
 
 
-    def add_user(self):
+    def register(self):
         if request.method == 'GET':
-            return self.render('user_form', user=None, action="/users/add")
+            return self.render('user_form', user=None, action="/register")
         else:
-            # POST - salvar usuário
             self.user_service.save()
-            self.redirect('/users')
+            return self.redirect('/home')
+
+
+    def login(self):
+        if request.method == 'GET':
+            return self.render('login')
+        else:
+            session = request.environ['beaker.session']
+            email = request.forms.get("email")
+            password = request.forms.get("password")
+
+            user, error = self.user_service.login_user(email, password)
+            if error:
+                return self.render('login', error=error)
+
+            session['user_id'] = user.user_id
+            session['logged_in'] = True
+            session.save()
+            return redirect('/home')
+
+
+    def logout(self):
+        if request.method == 'GET':
+            session = request.environ['beaker.session']
+            session.delete()
+            return redirect('/login')
+        else:
+            return redirect('/home')
 
 
     def edit_user(self, user_id):
@@ -40,9 +68,8 @@ class UserController(BaseController):
         if request.method == 'GET':
             return self.render('user_form', user=user, action=f"/users/edit/{user_id}")
         else:
-            # POST - salvar edição
             self.user_service.edit_user(user)
-            self.redirect('/users')
+            return self.redirect('/users')
 
 
     def delete_user(self, user_id):

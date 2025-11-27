@@ -1,6 +1,6 @@
-% rebase('layout.tpl', title='Formulário Usuário') 
+% rebase('layout.tpl', title='Cadastrar Usuário')
 <section class="form-section">
-    <h1><i class="fas fa-user-plus"></i> {{'Editar Usuário' if user else 'Adicionar Usuário'}}</h1>
+    <h1><i class="fas fa-user-plus"></i> {{'Editar Usuário' if user else 'Cadastrar Usuário'}}</h1>
     
     <form action="{{action}}" method="post" class="form-container">
         <div class="form-group">

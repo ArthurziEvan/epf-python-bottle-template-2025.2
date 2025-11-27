@@ -15,7 +15,7 @@
                 <a href="/" style="color: white; text-decoration: none; font-size: 1.5em;">Amigo Oculto</a>
                 <div>
                     <a href="/rooms" class="btn btn-sm btn-edit" style="color: black;">Salas</a>
-                    <a href="/users" class="btn btn-sm btn-edit" style="color: black;">Usuários</a>
+                    <a href="/login" class="btn btn-sm btn-edit" style="color: black;">Login</a>
                 </div>
             </nav>
         </div>
