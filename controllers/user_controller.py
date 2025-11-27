@@ -45,7 +45,7 @@ class UserController(BaseController):
             if error:
                 return self.render('login', error=error)
 
-            session['user_id'] = user.user_id
+            session['user_id'] = user.id
             session['logged_in'] = True
             session.save()
             return redirect('/home')

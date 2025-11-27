@@ -57,8 +57,8 @@ class UserService:
         users = self.user_model.get_all()
 
         for user in users:
-            if user["email"].lower() == email.lower():
-                if bcrypt.verify(password, user["password"]):
+            if user.email.lower() == email.lower():
+                if pbkdf2_sha256.verify(password, user.password):
                     return user, None
                 else:
                     return None, "Senha Incorreta."
