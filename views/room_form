@@ -1,10 +1,25 @@
-% rebase('layout.tpl', title='Criar Grupo')
-
-<h1>Criar um Grupo</h1>
-
-<form action="/rooms/add" method="post" class="form">
-    <label for="name">Nome do Grupo:</label>
-    <input type="text" id="name" name="name" required>
-
-    <button type="submit">Criar</button>
-</form>
+% rebase('layout.tpl', title='Criar Grupo' if not defined('room') or not room else 'Editar Grupo')
+<section class="form-section">
+    <h1><i class="fas fa-users"></i> {{'Editar Grupo' if defined('room') and room else 'Criar Novo Grupo'}}</h1>
+    
+    % if defined('validation_error') and validation_error:
+        <div class="alert alert-danger" role="alert" style="max-width: 450px; margin: 0 auto 20px;">
+            <i class="fas fa-exclamation-circle"></i> {{validation_error}}
+        </div>
+    % end
+    
+    <form action="{{action}}" method="post" class="form-container">
+        
+        <div class="form-group">
+            <label for="name">Nome do Grupo:</label>
+            <input type="text" id="name" name="name" required 
+                   value="{{room.name if defined('room') and room else ''}}">
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-submit"><i class="fas fa-save"></i> {{'Atualizar' if defined('room') and room else 'Criar Grupo'}}</button>
+            
+            <a href="/rooms" class="btn btn-cancel"><i class="fas fa-times-circle"></i> Cancelar</a>
+        </div>
+    </form>
+</section>

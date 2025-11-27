@@ -1,4 +1,4 @@
-% rebase('layout.tpl', title='Inicio')
+% rebase('layout.tpl', title='Início')
 
 <section class="container home-section">
     <h1>AMIGO OCULTO</h1>
@@ -10,4 +10,4 @@
         <a class="btn btn-primary" href="/rooms/add"><i class="fas fa-plus-circle"></i> Criar Novo Grupo</a>
         <a class="btn btn-edit" href="/rooms"><i class="fas fa-search"></i> Ver Meus Grupos</a>
     </div>
-</section>  
+</section>

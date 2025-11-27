@@ -9,7 +9,9 @@ class App:
         self.session_opts = {
             'session.type': 'cookie',
             'session.cookie_expires': 3600,
-            'session.auto': True
+            'session.auto': True,
+
+            'session.validate_key': self.config.SECRET_KEY
         }
         self.app = SessionMiddleware(self.bottle, self.session_opts)
 
