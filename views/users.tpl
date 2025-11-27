@@ -1,6 +1,5 @@
-%rebase('layout', title='Usuários')
-
-<section class="users-section">
+% rebase('layout.tpl', title='Usuários')
+<section class="container users-section">
     <div class="section-header">
         <h1 class="section-title"><i class="fas fa-users"></i> Gestão de Usuários</h1>
         <a href="/users/add" class="btn btn-primary">

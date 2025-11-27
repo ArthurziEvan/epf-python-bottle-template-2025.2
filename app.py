@@ -1,11 +1,17 @@
-from bottle import Bottle
+from beaker.middleware import SessionMiddleware
+from bottle import Bottle, run
 from config import Config
 
 class App:
     def __init__(self):
         self.bottle = Bottle()
         self.config = Config()
-
+        self.session_opts = {
+            'session.type': 'cookie',
+            'session.cookie_expires': 3600,
+            'session.auto': True
+        }
+        self.app = SessionMiddleware(self.bottle, self.session_opts)
 
     def setup_routes(self):
         from controllers import init_controllers
@@ -16,7 +22,8 @@ class App:
 
     def run(self):
         self.setup_routes()
-        self.bottle.run(
+        run(
+            app=self.app,
             host=self.config.HOST,
             port=self.config.PORT,
             debug=self.config.DEBUG,

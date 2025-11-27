@@ -2,3 +2,5 @@ bottle
 pylint
 passlib
 bcrypt
+itsdangerous
+beaker

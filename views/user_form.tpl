@@ -1,7 +1,6 @@
-% rebase('layout', title='Formulário Usuário')
-
+% rebase('layout.tpl', title='Cadastrar Usuário')
 <section class="form-section">
-    <h1>{{'Editar Usuário' if user else 'Adicionar Usuário'}}</h1>
+    <h1><i class="fas fa-user-plus"></i> {{'Editar Usuário' if user else 'Cadastrar Usuário'}}</h1>
     
     <form action="{{action}}" method="post" class="form-container">
         <div class="form-group">
@@ -18,13 +17,13 @@
         
         <div class="form-group">
             <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required
-                   value="{{user.password if user else ''}}">
+            <input type="password" id="password" name="password" 
+                   value="{{user.password if user else ''}}" required>
         </div>
         
         <div class="form-actions">
-            <button type="submit" class="btn-submit">Salvar</button>
-            <a href="/users" class="btn-cancel">Voltar</a>
+            <button type="submit" class="btn btn-submit"><i class="fas fa-save"></i> Salvar</button>
+            <a href="/users" class="btn btn-cancel"><i class="fas fa-times-circle"></i> Voltar</a>
         </div>
     </form>
-</section>      
+</section>

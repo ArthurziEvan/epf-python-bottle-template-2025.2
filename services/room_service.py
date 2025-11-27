@@ -4,6 +4,8 @@ import string
 from bottle import request
 
 from models.room import RoomModel, Room
+from services.auth_service import get_user_login
+
 
 class RoomService:
 
@@ -16,8 +18,8 @@ class RoomService:
 
 
     def save(self):
-
         keys = string.ascii_uppercase + string.digits
+        host_id = get_user_login().id
 
         while True:
             new_id = ''.join(random.choice(keys) for _ in range(6))
@@ -26,9 +28,8 @@ class RoomService:
                 break
 
         name = request.forms.get('name')
-        host_id = request.forms.get('host_id')
 
-        room = Room(id=new_id, name=name, host_id=host_id)
+        room = Room(id=new_id, name=name, host_id=host_id, members=[host_id])
         self.room_model.add_room(room)
 
 
@@ -45,12 +46,12 @@ class RoomService:
             if all(g != r for g, r in zip(members, sorted_members)):
                 break
 
-        assignments = {g: r for g, r in zip(members, sorted_members)}
+        sorting = {g: r for g, r in zip(members, sorted_members)}
 
-        room.chosen = assignments
+        room.chosen = sorting
         self.room_model.update_room(room_id)
 
-        return assignments
+        return sorting
 
     def get_by_id(self, room_id):
         return self.room_model.get_by_id(room_id)

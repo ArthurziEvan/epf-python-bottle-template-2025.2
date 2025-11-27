@@ -1,35 +1,40 @@
 % rebase('layout.tpl', title='Grupos')
 
-<header>
-    <h1>Grupos</h1>
-    <a class="btn primary" href="/rooms/add">Criar Grupo</a>
-</header>
+<section class="container">
+    <div class="section-header">
+        <h1><i class="fas fa-users"></i> Gestão de Grupos</h1>
+        <a class="btn btn-primary" href="/rooms/add"><i class="fas fa-plus"></i> Criar Grupo</a>
+    </div>
 
-<main class="container">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Dono</th>
-                <th>Participantes</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            % for room in rooms:
-            <tr>
-                <td>{{room.id}}</td>
-                <td>{{room.name}}</td>
-                <td>{{room.host_id}}</td>
-                <td>{{len(room.members)}}</td>
-                <td>
-                    <a href="/rooms/{{room.id}}">Acessar</a> |
-                    <a href="/rooms/{{room.id}}/edit">Editar</a> |
-                    <a href="/rooms/{{room.id}}/delete">Deletar</a>
-                </td>
-            </tr>
-            % end
-        </tbody>
-    </table>
-</main>
+    <div class="table-container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Dono (Host)</th>
+                    <th><i class="fas fa-user-friends"></i> Participantes</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                % for room in rooms:
+                <tr>
+                    <td>{{room.id}}</td>
+                    <td>{{room.name}}</td>
+                    <td>{{room.host_id}}</td>
+                    <td>{{len(room.members)}}</td>
+                    <td class="actions">
+                        <a href="/rooms/{{room.id}}" class="btn btn-sm btn-edit"><i class="fas fa-door-open"></i> Acessar</a>
+                        <a href="/rooms/{{room.id}}/edit" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Editar</a>
+                        
+                        <form action="/rooms/delete/{{room.id}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar o grupo {{room.name}}?')">
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                % end
+            </tbody>
+        </table>
+    </div>
+</section>
