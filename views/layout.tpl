@@ -47,7 +47,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Amigo Oculto - Sistema by Gemini</p>
+        <p>&copy; 2025 Amigo Oculto</p>
     </footer>
 
     <script src="/static/js/main.js"></script>
