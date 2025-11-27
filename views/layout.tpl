@@ -44,7 +44,10 @@
         % end
 
         {{!base}}
-    </dive
+    </div>
+
+    <footer>
+        </footer>
 
     <script src="/static/js/main.js"></script>
 </body>
