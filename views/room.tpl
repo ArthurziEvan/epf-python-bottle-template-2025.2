@@ -1,41 +1,51 @@
-% rebase('layout.tpl', title='Sala {{room.id}}')
+% rebase('layout.tpl', title='Grupos')
 
-% if room.sorted:
+<section class="container">
+    <div class="section-header">
+        <h1><i class="fas fa-users"></i> Gestão de Grupos</h1>
+    </div>
 
-    <section class="container room-details">
-        <h2><i class="fas fa-gift"></i> Seu Amigo Oculto: </h2>
-        <h1>{{users[room.chosen[str(user.id)]]}}</h1>
+    <div class="actions" style="justify-content: flex-end; margin-bottom: 20px">
+        <a class="btn btn-primary" href="/rooms/add"><i class="fas fa-plus"></i> Criar Grupo</a>
+        <a class="btn btn-edit" href="/rooms/join"><i class="fas fa-search"></i> Entrar em um Grupo</a>
+        <br>
+    </div>
 
-        % if user.id == room.host_id:
-            <a href="javascript:void(0)" onclick="email('{{room.id}}')" class="btn btn-primary"><i class="fas fa-envelope"></i> Mandar Resultados por Email</a>
-        % end
-    </section>
+    <div class="table-container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Dono (Host)</th>
+                    <th><i class="fas fa-user-friends"></i> Participantes</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                % for room in rooms:
+                <tr>
+                    <td>{{room.id}}</td>
+                    <td>{{room.name}}</td>
+                    <td>{{room.host_name}}</td>
+                    <td>{{len(room.members)}}</td>
+                    <td>{{'Sorteado' if room.sorted else 'Pendente'}}</td>
+                    <td class="actions">
+                        <a href="/rooms/{{room.id}}" class="btn btn-sm btn-edit"><i class="fas fa-door-open"></i> Acessar</a>
+                        % if user.id == room.host_id:
+                            <form action="/rooms/delete/{{room.id}}" method="post" onsubmit="return confirm('Tem certeza que deseja deletar o grupo {{room.name}}?')">
+                                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
+                            </form>
+                        % end
+                    </td>
+                </tr>
+                % end
+            </tbody>
+        </table>
+    </div>
 
-% else:
-
-    <section class="container room-details">
-        <h1><i class="fas fa-gift"></i> Detalhes do Grupo: {{room.name}}</h1>
-
-        <p><strong>ID:</strong> {{room.id}}</p>
-        <p><strong>Dono (Host):</strong> {{room.host_name}}</p>
-        <p><strong>Status do Sorteio:</strong> **{{'Sorteado' if room.sorted else 'Pendente'}}**</p>
-
-        <h2 style="margin-top: 20px;">Participantes ({{len(room.members)}})</h2>
-        <ul>
-            % for member_id in room.members:
-                <li><strong>{{users[member_id]}}</strong></li>
-            % end
-        </ul>
-
-        <div class="actions" style="justify-content: flex-start;">
-
-            <a href="javascript:void(0)"onclick="copyPasta('{{room.id}}')"class="btn btn-edit"><i class="fas fa-user-plus"></i> Convidar ao Grupo</a>
-            <p id="copy-message" style="display:none; color:green;"></p>
-            <a href="/rooms" class="btn btn-cancel"><i class="fas fa-arrow-left"></i> Voltar para Grupos</a>
-            % if user.id == room.host_id:
-                <a href="/rooms/sort/{{room.id}}" class="btn btn-primary"><i class="fas fa-random"></i> Sortear</a>
-            % end
-        </div>
-    </section>
-
-% end
+    <div class="form-actions">
+            <a href="/home" class="btn btn-cancel"><i class="fas fa-arrow-left"></i> Voltar</a>
+    </div>
+</section>

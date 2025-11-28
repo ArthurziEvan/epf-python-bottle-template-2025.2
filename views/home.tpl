@@ -1,3 +1,4 @@
+
 % rebase('layout.tpl', title='Início')
 
 <section class="container home-section">
