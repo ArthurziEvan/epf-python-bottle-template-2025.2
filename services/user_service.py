@@ -1,3 +1,5 @@
+import uuid
+
 from bottle import request
 from passlib.handlers.bcrypt import bcrypt
 from passlib.handlers.pbkdf2 import pbkdf2_sha256
@@ -15,8 +17,7 @@ class UserService:
 
 
     def save(self):
-        last_id = max([u.id for u in self.user_model.get_all()], default=0)
-        new_id = last_id + 1
+        new_id = str(uuid.uuid4())
         name = request.forms.get('name')
         email = request.forms.get('email')
         password_hash = pbkdf2_sha256.hash(request.forms.get('password'))

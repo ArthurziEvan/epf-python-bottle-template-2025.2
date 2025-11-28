@@ -1,10 +1,8 @@
-from bottle import request, Bottle
-from isort.literal import assignments
+from bottle import request, Bottle, response
 
 from controllers.base_controller import BaseController
 from services.auth_service import lock_login, get_user_login
 from services.room_service import RoomService
-from services.user_service import UserService
 
 
 class RoomController(BaseController):
@@ -19,6 +17,7 @@ class RoomController(BaseController):
         self.app.route('/rooms', method='GET', callback=lock_login(self.list_rooms))
         self.app.route('/rooms/add', method=['GET', 'POST'], callback=lock_login(self.add_room))
         self.app.route('/rooms/delete/<room_id>', method='POST', callback=lock_login(self.delete_room))
+        self.app.route('/rooms/sort/<room_id>', method=['GET', 'POST'], callback=lock_login(self.sort))
         self.app.route('/rooms/join', method=['GET', 'POST'], callback=lock_login(self.join_room))
 
         self.app.route('/rooms/<room_id>', method=['GET', 'POST'], callback=lock_login(self.room))
@@ -58,7 +57,7 @@ class RoomController(BaseController):
 
             room.members.append(user.id)
             self.room_service.edit_room(room_id, room)
-            return self.redirect('/rooms/<room_id>')
+            return self.redirect(f'/rooms/{room_id}')
 
 
     def delete_room(self, room_id):
@@ -67,7 +66,7 @@ class RoomController(BaseController):
 
     def room(self, room_id):
 
-        user=user=get_user_login(self.user_service)
+        user=get_user_login(self.user_service)
         room = self.room_service.get_by_id(room_id)
         users = {u.id: u.name for u in self.user_service.get_all()}
 
@@ -78,19 +77,11 @@ class RoomController(BaseController):
 
 
     def sort(self, room_id):
-        try:
-            sorted = self.room_service.sort(room_id)
-        except ValueError as e:
-            return f"<h2>Erro : {str(e)}</h2>"
 
+        room = self.room_service.get_by_id(room_id)
+        self.room_service.sort(room)
 
-
-        # USO PARA MANDAR POR EMAIL NO FUTURO
-            #for giver, reciever in sorted.items():
-            user = self.user_service.get_by_id(reciever)
-
-
-        return self.render('room_sort', sorted=sorted, user=get_user_login(self.user_service))
+        return self.redirect(f'/rooms/{room_id}')
 
 
 room_routes = Bottle()

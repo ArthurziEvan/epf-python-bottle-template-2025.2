@@ -1,14 +1,26 @@
 [
     {
-        "id": 1,
+        "id": "689fba76-5c4f-48ab-89c4-19fe7b23277b",
         "name": "RafaelArniqueiras",
         "email": "xingxungu2601@gmail.com",
-        "password": "$pbkdf2-sha256$29000$jbF2DuH8v1eq9Z7zHqP03g$jtC1.JYinqb1pV4E42EZtfnGP3EfLcJ10u4ctfRhOTg"
+        "password": "$pbkdf2-sha256$29000$S4lRijEGwLhXSsmZ815LCQ$HUChoopBiObbVgCK3lzUWO040trrFmTHgmyPRAVBE3I"
     },
     {
-        "id": 2,
+        "id": "18b7aafd-bafe-496a-963d-1886b1db7c0c",
         "name": "RafaelArniqueiras2",
         "email": "akirashimojo@icloud.com",
-        "password": "$pbkdf2-sha256$29000$be09RyiFkHIuxfh/T4mR0g$ExojbjKNjTM1VMpvHQwZVw7XGTdjfOvAQbK.pAbOOhA"
+        "password": "$pbkdf2-sha256$29000$C6E0BmDMeU.p9V4LIUTonQ$fHpagZI4UeG7V/.wWhMMxFa6xCSzew2qfiK5c/09xHg"
+    },
+    {
+        "id": "add29471-4edf-4fd0-becd-75298794bfba",
+        "name": "RafaelArniqueiras3",
+        "email": "oshinjikinnie@gmail.com",
+        "password": "$pbkdf2-sha256$29000$dq51zhmjtJYSglDq3ZvTug$bo.fycwq4T3OTMmsPC9auwD/uFCnKet7pEJXRIb/kJM"
+    },
+    {
+        "id": "3fa85ee3-e176-4534-8f4f-3ab9b1e9976c",
+        "name": "RafaelArniqueiras4",
+        "email": "imbatmanboyle@gmail.com",
+        "password": "$pbkdf2-sha256$29000$AiDEGMPYW8v5v3cuxTjnvA$hkdQW8lLkNL1o6gOOlliJ4lLGBrxRj5KNAej.1lKEn0"
     }
 ]
