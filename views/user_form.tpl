@@ -3,13 +3,21 @@
     <div class="form-group">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" required 
+<<<<<<< HEAD
             value="{{user.name if defined('user') and 'id' in user else (user.get('name') if defined('user') and user and hasattr(user, 'get') else '')}}">
+=======
+            value="{{user.name if user else ''}}">
+>>>>>>> b4664ed60405610da4e5ceccae91f0598a19fb97
     </div>
     
     <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required 
+<<<<<<< HEAD
             value="{{user.email if defined('user') and 'id' in user else (user.get('email') if defined('user') and user and hasattr(user, 'get') else '')}}">
+=======
+            value="{{user.email if user else ''}}">
+>>>>>>> b4664ed60405610da4e5ceccae91f0598a19fb97
     </div>
     
     <div class="form-group">

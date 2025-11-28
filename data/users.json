@@ -1,8 +1,11 @@
 [
+<<<<<<< HEAD
     {
         "id": 2,
         "name": "Arthur Evangelista da SIlva",
         "email": "arthur03655@gmail.com",
         "password": "$pbkdf2-sha256$29000$TcnZO.cco/Tem3OO8X5vzQ$rlI2zKlnvzBSWdeUYEqNvW2LdqZyVkE1/7HzAwkD1.4"
     }
+=======
+>>>>>>> b4664ed60405610da4e5ceccae91f0598a19fb97
 ]
