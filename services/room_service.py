@@ -4,8 +4,6 @@ import string
 from bottle import request
 
 from models.room import RoomModel, Room
-from services.auth_service import get_user_login
-
 
 class RoomService:
 
@@ -19,7 +17,8 @@ class RoomService:
 
     def save(self):
         keys = string.ascii_uppercase + string.digits
-        host_id = get_user_login().id
+        session = request.environ['beaker.session']
+        host_id = session.get('user_id')
 
         while True:
             new_id = ''.join(random.choice(keys) for _ in range(6))
@@ -31,6 +30,14 @@ class RoomService:
 
         room = Room(id=new_id, name=name, host_id=host_id, members=[host_id])
         self.room_model.add_room(room)
+
+
+    def edit_room(self, room_id, room):
+        if not self.room_model.get_by_id(room_id):
+            raise ValueError("Erro: sala não existe.")
+
+        self.room_model.update_room(room)
+        return room
 
 
     def sort(self, room_id):

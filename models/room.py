@@ -1,6 +1,7 @@
 import json
 import os
 
+from services.user_service import UserService
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
@@ -16,6 +17,12 @@ class Room:
 
     def __repr__(self):
         return f'<Room id={self.id} name={self.name}>'
+
+    @property
+    def host_name(self):
+        user = UserService().get_by_id(self.host_id)
+        return user.name if user else "??????"
+
 
     def to_dict(self):
         return {

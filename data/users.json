@@ -1,2 +1,14 @@
 [
+    {
+        "id": 1,
+        "name": "RafaelArniqueiras",
+        "email": "xingxungu2601@gmail.com",
+        "password": "$pbkdf2-sha256$29000$jbF2DuH8v1eq9Z7zHqP03g$jtC1.JYinqb1pV4E42EZtfnGP3EfLcJ10u4ctfRhOTg"
+    },
+    {
+        "id": 2,
+        "name": "RafaelArniqueiras2",
+        "email": "akirashimojo@icloud.com",
+        "password": "$pbkdf2-sha256$29000$be09RyiFkHIuxfh/T4mR0g$ExojbjKNjTM1VMpvHQwZVw7XGTdjfOvAQbK.pAbOOhA"
+    }
 ]

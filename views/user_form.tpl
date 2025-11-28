@@ -1,3 +1,4 @@
+% rebase('layout.tpl', title='Cadastro')
 <form action="{{action}}" method="post" class="form-container">
     
     <div class="form-group">
@@ -22,6 +23,6 @@
     <div class="form-actions">
         <button type="submit" class="btn btn-submit"><i class="fas fa-save"></i> {{'Atualizar' if defined('user') and user and user.id else 'Salvar'}}</button>
         
-        <a href="/users" class="btn btn-cancel"><i class="fas fa-times-circle"></i> Voltar</a>
+        <a href="/home" class="btn btn-cancel"><i class="fas fa-times-circle"></i> Voltar</a>
     </div>
 </form>

@@ -7,7 +7,6 @@ class UserController(BaseController):
         super().__init__(app)
 
         self.setup_routes()
-        self.user_service = UserService()
 
 
     def setup_routes(self):
@@ -30,7 +29,7 @@ class UserController(BaseController):
             return self.render('user_form', user=None, action="/register")
         else:
             self.user_service.save()
-            return self.redirect('/home')
+            return self.home_redirect()
 
 
     def login(self):
@@ -48,7 +47,7 @@ class UserController(BaseController):
             session['user_id'] = user.id
             session['logged_in'] = True
             session.save()
-            return redirect('/home')
+            return self.home_redirect()
 
 
     def logout(self):
@@ -57,7 +56,7 @@ class UserController(BaseController):
             session.delete()
             return redirect('/login')
         else:
-            return redirect('/home')
+            return self.home_redirect()
 
 
     def edit_user(self, user_id):

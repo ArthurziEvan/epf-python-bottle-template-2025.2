@@ -14,10 +14,8 @@
             <nav style="display: flex; justify-content: space-between; align-items: center;">
                 <a href="/" style="color: white; text-decoration: none; font-size: 1.5em; font-weight: bold;">Amigo Oculto</a>
                 <div>
-                    % if defined('user_login') and user_login:
-                        <span style="color: white; margin-right: 15px;">
-                            Olá, <strong>{{user_login.name}}</strong>
-                        </span>
+                    % if defined('logged_user') and logged_user:
+                        <span style="color: black; margin-right: 15px;"><strong>{{logged_user.name}}</strong></span>
                         <a href="/rooms" class="btn btn-sm btn-edit" style="color: black;"><i class="fas fa-users"></i> Salas</a>
                         <a href="/logout" class="btn btn-sm btn-danger"><i class="fas fa-sign-out-alt"></i> Sair</a>
                     % else:
@@ -51,4 +49,5 @@
 
     <script src="/static/js/main.js"></script>
 </body>
+<script src="/static/js/util.js"></script>
 </html>
