@@ -22,5 +22,11 @@
         "name": "RafaelArniqueiras4",
         "email": "imbatmanboyle@gmail.com",
         "password": "$pbkdf2-sha256$29000$AiDEGMPYW8v5v3cuxTjnvA$hkdQW8lLkNL1o6gOOlliJ4lLGBrxRj5KNAej.1lKEn0"
+    },
+    {
+        "id": "a703a94f-df1e-40e2-8530-abbababb051d",
+        "name": "Arthur Evangelista da SIlva",
+        "email": "arthur03655@gmail.com",
+        "password": "$pbkdf2-sha256$29000$rPUeo3TOmdN6jxGCMAYAYA$9qyX6PK71AJCBLnCqK7eWMNB8H8e/UnAMlGk4xGclmU"
     }
 ]

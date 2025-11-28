@@ -1,4 +1,3 @@
-
 from bottle import request, redirect
 
 from services.user_service import UserService

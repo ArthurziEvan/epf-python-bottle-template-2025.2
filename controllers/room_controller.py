@@ -1,80 +1,88 @@
-from bottle import Bottle, request, redirect
-from .base_controller import BaseController
-from services.user_service import UserService
+from bottle import request, Bottle, response
 
-class UserController(BaseController):
+from controllers.base_controller import BaseController
+from services.auth_service import lock_login, get_user_login
+from services.room_service import RoomService
+
+
+class RoomController(BaseController):
     def __init__(self, app):
         super().__init__(app)
 
         self.setup_routes()
+        self.room_service = RoomService()
 
-
+    # Rotas Sala
     def setup_routes(self):
-        self.app.route('/users', method='GET', callback=self.list_users)
-        self.app.route('/register', method=['GET', 'POST'], callback=self.register)
-        self.app.route('/users/edit/<user_id:int>', method=['GET', 'POST'], callback=self.edit_user)
-        self.app.route('/users/delete/<user_id:int>', method='POST', callback=self.delete_user)
+        self.app.route('/rooms', method='GET', callback=lock_login(self.list_rooms))
+        self.app.route('/rooms/add', method=['GET', 'POST'], callback=lock_login(self.add_room))
+        self.app.route('/rooms/delete/<room_id>', method='POST', callback=lock_login(self.delete_room))
+        self.app.route('/rooms/sort/<room_id>', method=['GET', 'POST'], callback=lock_login(self.sort))
+        self.app.route('/rooms/join', method=['GET', 'POST'], callback=lock_login(self.join_room))
 
-        self.app.route('/login', method=['GET', 'POST'], callback=self.login)
-        self.app.route('/logout', method='GET', callback=self.logout)
+        self.app.route('/rooms/<room_id>', method=['GET', 'POST'], callback=lock_login(self.room))
 
+    def list_rooms(self):
+        user = get_user_login(self.user_service)
 
-    def list_users(self):
-        users = self.user_service.get_all()
-        return self.render('users', users=users)
+        rooms = [
+            r for r in self.room_service.get_all()
+            if r.host_id == user.id or user.id in r.members
+        ]
 
+        return self.render('rooms', rooms=rooms, user=user)
 
-    def register(self):
+    def add_room(self):
         if request.method == 'GET':
-            return self.render('user_form', user=None, action="/register")
+            return self.render('room_form', rooms=None, user=get_user_login(self.user_service), action="/rooms/add")
         else:
-            self.user_service.save()
+            self.room_service.save()
+            return self.redirect('/rooms')
+
+
+    def join_room(self):
+        if request.method == 'GET':
+            return self.render('join_room', user=get_user_login(self.user_service))
+        else:
+            user = get_user_login(self.user_service)
+            room_id = request.forms.get('room_id')
+
+            room = self.room_service.get_by_id(room_id)
+
+            if not room:
+                return self.render('join_room', error="Sala não encontrada.", user=user)
+
+            if user.id == room.host_id or user.id in room.members:
+                return self.render('join_room', error="Você já é membro dessa sala.", user=user)
+
+            room.members.append(user.id)
+            self.room_service.edit_room(room_id, room)
+            return self.redirect(f'/rooms/{room_id}')
+
+
+    def delete_room(self, room_id):
+        self.room_service.delete_room(room_id)
+        self.redirect('/rooms')
+
+    def room(self, room_id):
+
+        user=get_user_login(self.user_service)
+        room = self.room_service.get_by_id(room_id)
+        users = {u.id: u.name for u in self.user_service.get_all()}
+
+        if user.id != room.host_id and user.id not in room.members:
             return self.home_redirect()
 
-
-    def login(self):
-        if request.method == 'GET':
-            return self.render('login')
-        else:
-            session = request.environ['beaker.session']
-            email = request.forms.get("email")
-            password = request.forms.get("password")
-
-            user, error = self.user_service.login_user(email, password)
-            if error:
-                return self.render('login', error=error)
-
-            session['user_id'] = user.id
-            session['logged_in'] = True
-            session.save()
-            return self.home_redirect()
+        return self.render('room', room=room, user=user, users=users)
 
 
-    def logout(self):
-        if request.method == 'GET':
-            session = request.environ['beaker.session']
-            session.delete()
-            return redirect('/login')
-        else:
-            return self.home_redirect()
+    def sort(self, room_id):
+
+        room = self.room_service.get_by_id(room_id)
+        self.room_service.sort(room)
+
+        return self.redirect(f'/rooms/{room_id}')
 
 
-    def edit_user(self, user_id):
-        user = self.user_service.get_by_id(user_id)
-        if not user:
-            return "Usuário não encontrado"
-
-        if request.method == 'GET':
-            return self.render('user_form', user=user, action=f"/users/edit/{user_id}")
-        else:
-            self.user_service.edit_user(user)
-            return self.redirect('/users')
-
-
-    def delete_user(self, user_id):
-        self.user_service.delete_user(user_id)
-        self.redirect('/users')
-
-
-user_routes = Bottle()
-user_controller = UserController(user_routes)
+room_routes = Bottle()
+room_controller = RoomController(room_routes)
