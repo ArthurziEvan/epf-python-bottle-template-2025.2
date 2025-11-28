@@ -1,9 +1,13 @@
 from bottle import static_file
 
+from services.user_service import UserService
+
+
 class BaseController:
     def __init__(self, app):
         self.app = app
         self._setup_base_routes()
+        self.user_service = UserService()
 
 
     def _setup_base_routes(self):
@@ -30,8 +34,19 @@ class BaseController:
 
 
     def render(self, template, **context):
-        """Método auxiliar para renderizar templates"""
         from bottle import template as render_template
+        from bottle import request
+
+        session = request.environ['beaker.session']
+
+        logged_user = None
+
+        if session and session.get('user_id'):
+            user_id = session['user_id']
+            logged_user = self.user_service.get_by_id(user_id)
+
+        context['logged_user'] = logged_user
+
         return render_template(template, **context)
 
 

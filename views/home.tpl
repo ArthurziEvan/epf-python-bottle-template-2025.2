@@ -8,6 +8,7 @@
 
     <div class="actions">
         <a class="btn btn-primary" href="/rooms/add"><i class="fas fa-plus-circle"></i> Criar Novo Grupo</a>
-        <a class="btn btn-edit" href="/rooms"><i class="fas fa-search"></i> Ver Meus Grupos</a>
+        <a class="btn btn-primary" href="/rooms/join"><i class="fas fa-search"></i> Entrar em um Grupo</a>
+        <a class="btn btn-edit" href="/rooms"><i class="fas fa-users"></i> Ver Meus Grupos</a>
     </div>
 </section>

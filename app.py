@@ -8,7 +8,7 @@ class App:
         self.config = Config()
         self.session_opts = {
             'session.type': 'cookie',
-            'session.cookie_expires': 3600,
+            'session.cookie_expires': 7200,
             'session.auto': True,
 
             'session.validate_key': self.config.SECRET_KEY

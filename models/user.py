@@ -1,11 +1,12 @@
 import json
 import os
+import uuid
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
 class User:
     def __init__(self, id, name, email, password):
-        self.id = id
+        self.id = id or str(uuid.uuid4())
         self.name = name
         self.email = email
         self.password = password
@@ -55,12 +56,12 @@ class UserModel:
 
 
     def get_all(self):
-        return self.users
+        return self._load()
 
     def get_by_email(self, email: str):
         return next((u for u in self.users if u.email == email), None)
 
-    def get_by_id(self, user_id: int):
+    def get_by_id(self, user_id: str):
         return next((u for u in self.users if u.id == user_id), None)
 
 
@@ -77,6 +78,6 @@ class UserModel:
                 break
 
 
-    def delete_user(self, user_id: int):
+    def delete_user(self, user_id: str):
         self.users = [u for u in self.users if u.id != user_id]
         self._save()

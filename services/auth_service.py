@@ -2,8 +2,6 @@ from bottle import request, redirect
 
 from services.user_service import UserService
 
-user_service = UserService()
-
 def lock_login(func):
     def wrap(*args, **kwargs):
         session = request.environ['beaker.session']
@@ -12,11 +10,13 @@ def lock_login(func):
         return func(*args, **kwargs)
     return wrap
 
-def get_user_login():
+def get_user_login(user_service):
     session = request.environ['beaker.session']
-    if not session:
-        return None
-    user_id = session.get('user_id')
-    if not user_id:
-        return None
-    return user_service.get_by_id(user_id)
+
+    logged_user = None
+
+    if session and session.get('user_id'):
+        user_id = session['user_id']
+        logged_user = user_service.get_by_id(user_id)
+
+    return logged_user
