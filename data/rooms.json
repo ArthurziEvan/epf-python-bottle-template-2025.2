@@ -4,7 +4,11 @@
         "name": "Grupo teste",
         "host_id": "a703a94f-df1e-40e2-8530-abbababb051d",
         "members": [
-            "a703a94f-df1e-40e2-8530-abbababb051d"
+            "a703a94f-df1e-40e2-8530-abbababb051d",
+            "689fba76-5c4f-48ab-89c4-19fe7b23277b",
+            "18b7aafd-bafe-496a-963d-1886b1db7c0c",
+            "add29471-4edf-4fd0-becd-75298794bfba",
+            "3fa85ee3-e176-4534-8f4f-3ab9b1e9976c"
         ],
         "chosen": {},
         "sorted": false
