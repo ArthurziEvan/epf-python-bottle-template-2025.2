@@ -28,5 +28,29 @@
         "name": "Arthur Evangelista da SIlva",
         "email": "arthur03655@gmail.com",
         "password": "$pbkdf2-sha256$29000$rPUeo3TOmdN6jxGCMAYAYA$9qyX6PK71AJCBLnCqK7eWMNB8H8e/UnAMlGk4xGclmU"
+    },
+    {
+        "id": "8d83a60e-abde-4db6-8a51-ad48a17dffa3",
+        "name": "12315151",
+        "email": "14124@gmail.com",
+        "password": "$pbkdf2-sha256$29000$936v9T5njDGGcC6FkFKK8Q$cGpzwnGaMlY./72T/o687s/YuT3K60RpieHln9tqs1c"
+    },
+    {
+        "id": "31f850f7-6bb3-41c8-931b-4bb3478d26dd",
+        "name": "JasonTodd123",
+        "email": "jasontodd@gmail.com",
+        "password": "$pbkdf2-sha256$29000$17o35vzf.9/bO0dobc353w$yUDe386rDr7SrMyAN5oqZIoM6X4GUMBHVTagtRl5z1M"
+    },
+    {
+        "id": "e092ac15-6ac3-4c39-9dd8-996e312ffb0a",
+        "name": "Alirio da SIlva",
+        "email": "alirio@gmail.com",
+        "password": "$pbkdf2-sha256$29000$mtOa834vRah1TskZI6T0Pg$MBdB/KTh7fuaObem/kg2tf5afm8AcXkI4gqFgacnE1c"
+    },
+    {
+        "id": "91b0e06f-39ce-419e-94c2-9af04d966714",
+        "name": "neymar",
+        "email": "ney@gmail.com",
+        "password": "$pbkdf2-sha256$29000$GUMIQagVgvC.d05JSWmNMQ$PQ/y9iUBu5d4dB.B1oPSm/GvFx2RG2Ww3KxnYbIslXs"
     }
 ]
