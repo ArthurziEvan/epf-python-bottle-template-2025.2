@@ -1,7 +1,6 @@
 import uuid
 
 from bottle import request
-from passlib.handlers.bcrypt import bcrypt
 from passlib.handlers.pbkdf2 import pbkdf2_sha256
 
 from models.user import UserModel, User

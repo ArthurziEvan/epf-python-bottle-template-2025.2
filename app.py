@@ -1,5 +1,9 @@
+import uuid
+
 from beaker.middleware import SessionMiddleware
 from bottle import Bottle, run
+from passlib.handlers.pbkdf2 import pbkdf2_sha256
+
 from config import Config
 
 class App:
@@ -7,9 +11,14 @@ class App:
         self.bottle = Bottle()
         self.config = Config()
         self.session_opts = {
-            'session.type': 'cookie',
-            'session.cookie_expires': 7200,
+            'session.key': 'projeto-python-amigo-oculto-oo-2025-2',
+            'session.lock_dir': './data/session_locks',
+            'session.cookie_expires': True,
+            'session.type': 'file',
+            'session.data_dir': './data/sessions',
             'session.auto': True,
+            'session.secret': pbkdf2_sha256.hash(self.config.SECRET_KEY),
+            'session.encrypt_key': str(uuid.uuid4()),
 
             'session.validate_key': self.config.SECRET_KEY
         }
