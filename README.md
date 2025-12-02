@@ -91,7 +91,7 @@ Contém as classes responsáveis por lidar com as rotas da aplicação. Exemplos
 - `user_controller.py`: rotas para listagem, adição, edição e remoção de usuários.
 - `base_controller.py`: classe base com utilitários comuns.
 - `home_controller.py`: gerencia a página inicial.
-- - `room_controller.py`:gerencia as Salas de Amigo Oculto, seus membros e o envio de e-mails.
+- `room_controller.py`:gerencia as Salas de Amigo Oculto, seus membros e o envio de e-mails.
 
 ### `models/`
 Define as classes que representam os dados da aplicação. Exemplo:
@@ -100,13 +100,21 @@ Define as classes que representam os dados da aplicação. Exemplo:
 
 ### `services/`
 Responsável por salvar, carregar e manipular dados usando arquivos JSON. Exemplo:
-- `user_service.py`: contém métodos como `get_all`, `add_user`, `delete_user`.
+- `user_service.py`: encapsula toda a lógica de negócios relacionada a usuários.
+- `auth_service.py`:fornece funções utilitárias para gerenciar o estado de login do usuário
+  `room_service.py`:encapsula a lógica de negócios relacionada às salas de Amigo Oculto.
 
 ### `views/`
 Contém os arquivos `.tpl` utilizados pelo Bottle como páginas HTML:
 - `layout.tpl`: estrutura base com navegação e bloco `content`.
 - `users.tpl`: lista os usuários.
 - `user_form.tpl`: formulário para adicionar/editar usuário.
+-  `home.tpl`: página inicial com links de atalho
+-  `login.tpl`: formulário para autenticação do usuário.
+-  `join_room.tpl`: formulário para entrar em uma sala
+-  `room.tpl`: visualização de sala.
+-  `room_form.tpl`: permite criar um novo grupo ou editar o nome de um grupo existente
+-  `users.tpl`: exibe uma tabela de todos os usuários registrados
 
 ### `static/`
 Arquivos estáticos como:
