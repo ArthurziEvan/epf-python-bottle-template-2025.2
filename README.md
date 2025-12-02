@@ -83,7 +83,7 @@ poo-python-bottle-template/
     └── pyvenv.cfg
 
 ---
-
+```
 ## 📁 Descrição das Pastas
 
 ### `controllers/`
