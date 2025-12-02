@@ -90,10 +90,13 @@ poo-python-bottle-template/
 Contém as classes responsáveis por lidar com as rotas da aplicação. Exemplos:
 - `user_controller.py`: rotas para listagem, adição, edição e remoção de usuários.
 - `base_controller.py`: classe base com utilitários comuns.
+- `home_controller.py`: gerencia a página inicial.
+- - `room_controller.py`:gerencia as Salas de Amigo Oculto, seus membros e o envio de e-mails.
 
 ### `models/`
 Define as classes que representam os dados da aplicação. Exemplo:
 - `user.py`: classe `User`, com atributos como `id`, `name`, `email`, etc.
+- `room.py`: define a estrutura da sala e gerencia o armazenamento
 
 ### `services/`
 Responsável por salvar, carregar e manipular dados usando arquivos JSON. Exemplo:
