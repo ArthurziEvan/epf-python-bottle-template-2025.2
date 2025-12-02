@@ -125,7 +125,7 @@ Arquivos estáticos como:
 ### `data/`
 Armazena os arquivos `.json` que simulam o banco de dados:
 - `users.json`: onde os dados dos usuários são persistidos.
-
+- `rooms.json`:onde os dados das salas são persistidos
 ---
 
 ## ▶️ Como Executar
