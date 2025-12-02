@@ -13,19 +13,111 @@ Fornecer uma base simples, extensível e didática para construção de aplicaç
 ## 🗂 Estrutura de Pastas
 
 ```bash
+Entendi. Você está pedindo uma **descrição/análise** de como as classes **`UserService`** e **`RoomService`** se encaixam na estrutura de diretórios do seu projeto, especificamente em relação à lógica de persistência e como elas interagem com a estrutura **MVC/Camadas** implícita.
+
+Aqui está a análise detalhada, com foco nas responsabilidades de cada camada e nas alterações no diagrama de estrutura para refletir a separação entre Serviço e Persistência:
+
+-----
+
+## 🎯 Análise de Responsabilidades no Projeto
+
+O seu projeto segue um padrão de arquitetura de **Camadas** (semelhante ao MVC) para separar responsabilidades. As classes `UserService` e `RoomService` são a **Camada de Serviço/Negócio**, enquanto a **persistência** reside na Camada de Modelo.
+
+### 1\. Camada de Persistência (Modelos de Dados)
+
+  * **Localização:** Pasta `models/` (ex: `room.py`, `user.py`).
+  * **Responsabilidade Real:** Implementar a lógica de **acesso e manipulação direta** dos dados (CRUD - Criar, Ler, Atualizar, Deletar).
+      * No seu projeto, isto seria a leitura e escrita direta nos arquivos JSON.
+      * Os arquivos `room.py` e `user.py` provavelmente definem as **classes de entidade** (`Room`, `User`) e as classes **Model** (`RoomModel`, `UserModel`) que contêm os métodos para interagir com o `data/rooms.json` e `data/users.json`.
+  * **Exemplo:** O método `UserModel.get_by_id(user_id)` leria o arquivo JSON para encontrar o usuário.
+
+### 2\. Camada de Serviço (Lógica de Negócio)
+
+  * **Localização:** Pasta `services/` (ex: `room_service.py`, `user_service.py`).
+  * **Responsabilidade:** Implementar as **regras de negócio**, validar dados, coordenar operações complexas e **utilizar** a camada de persistência.
+      * A classe `RoomService` lida com regras como a geração de IDs únicos e o algoritmo de sorteio.
+      * A classe `UserService` lida com regras de segurança como **hashing de senha** (`pbkdf2_sha256.hash`) e gerenciamento de **sessão** (`session['user_id']`).
+
+### 3\. Orquestração (Controllers)
+
+  * **Localização:** Pasta `controllers/`.
+  * **Responsabilidade:** Lidar com requisições HTTP, chamar os métodos corretos nos **Services** e carregar os templates na pasta **`views/`**.
+
+-----
+
+## 📝 Estrutura Atualizada com Observações de Camadas
+
+Para refletir essa separação de responsabilidades (Serviço vs. Persistência), adicionei uma nota mais precisa sobre a função de cada pasta no diagrama abaixo.
+
+```
 poo-python-bottle-template/
 ├── app.py # Ponto de entrada do sistema
 ├── config.py # Configurações e caminhos do projeto
 ├── main.py # Inicialização da aplicação
 ├── requirements.txt # Dependências do projeto
 ├── README.md # Este arquivo
-├── controllers/ # Controladores e rotas
-├── models/ # Definição das entidades (ex: User)
-├── services/ # Lógica de persistência (JSON)
-├── views/ # Arquivos HTML (Bottle Templating)
-├── static/ # CSS, JS e imagens
-├── data/ # Arquivos JSON de dados
-└── .vscode/ # Configurações opcionais do VS Code
+├── Makefile
+├── .gitignore
+├── .pylintrc
+|
+├── controllers/ # Controladores (Rotas HTTP) - Lidam com a requisição e chamam os Services.
+│   ├── __pycache__
+│   ├── __init__.py
+│   ├── base_controller.py
+│   ├── home_controller.py
+│   ├── room_controller.py
+│   └── user_controller.py
+|
+├── data/ # Armazenamento de Dados (Arquivos JSON)
+│   ├── session_locks
+│   ├── sessions
+│   ├── rooms.json
+│   └── users.json
+|
+├── models/ # Camada de Persistência (Modelos de Dados e Entidades) - Contém a lógica de acesso direto aos arquivos JSON.
+│   ├── __pycache__
+│   ├── room.py
+│   └── user.py
+|
+├── services/ # Camada de Serviço (Lógica de Negócio) - Contém regras como hashing de senha, sorteio de salas, e validações.
+│   ├── __pycache__
+│   ├── auth_service.py
+│   ├── room_service.py
+│   └── user_service.py
+|
+├── static/ # Arquivos Estáticos (CSS, JS, Imagens)
+│   ├── css/
+│   │   ├── helper.css
+│   │   └── style.css
+│   ├── html/
+│   │   └── email.html
+│   ├── img/
+│   │   └── BottleLogo.png
+│   └── js/
+│       ├── helper.js
+│       ├── main.js
+│       └── util.js
+|
+├── views/ # Camada de Apresentação (Templates Bottle) - Renderiza o HTML final.
+│   ├── helper-final.tpl
+│   ├── home.tpl
+│   ├── join_room.tpl
+│   ├── layout.tpl
+│   ├── login.tpl
+│   ├── room_form.tpl
+│   ├── room.tpl
+│   ├── rooms.tpl
+│   ├── user_form.tpl
+│   ├── users.tpl
+│   ├── .gitignore
+│   └── .pylintrc
+|
+└── venv/ # Ambiente Virtual Python
+    ├── Include
+    ├── Lib
+    ├── Scripts
+    └── pyvenv.cfg
+```
 ```
 
 
