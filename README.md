@@ -13,18 +13,18 @@ Fornecer uma base simples, extensível e didática para construção de aplicaç
 ## 🗂 Estrutura de Pastas
 
 ```bash
-```
+
 poo-python-bottle-template/
 ├── app.py # Ponto de entrada do sistema
 ├── config.py # Configurações e caminhos do projeto
 ├── main.py # Inicialização da aplicação
-├── requirements.txt # Dependências do projeto
-├── README.md # Este arquivo
+├── requirements.txt 
+├── README.md 
 ├── Makefile
 ├── .gitignore
 ├── .pylintrc
 |
-├── controllers/ # Controladores (Rotas HTTP) - Lidam com a requisição e chamam os Services.
+├── controllers/ # Controladores
 │   ├── __pycache__
 │   ├── __init__.py
 │   ├── base_controller.py
@@ -38,7 +38,7 @@ poo-python-bottle-template/
 │   ├── rooms.json
 │   └── users.json
 |
-├── models/ # Camada de Persistência (Modelos de Dados e Entidades) - Contém a lógica de acesso direto aos arquivos JSON.
+├── models/ # (Modelos de Dados e Entidades)
 │   ├── __pycache__
 │   ├── room.py
 │   └── user.py
@@ -81,9 +81,6 @@ poo-python-bottle-template/
     ├── Lib
     ├── Scripts
     └── pyvenv.cfg
-```
-```
-
 
 ---
 
