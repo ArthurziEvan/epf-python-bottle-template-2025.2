@@ -91,7 +91,7 @@ Contém as classes responsáveis por lidar com as rotas da aplicação. Exemplos
 - `user_controller.py`: rotas para listagem, adição, edição e remoção de usuários.
 - `base_controller.py`: classe base com utilitários comuns.
 - `home_controller.py`: gerencia a página inicial.
-- `room_controller.py`:gerencia as Salas de Amigo Oculto, seus membros e o envio de e-mails.
+- `room_controller.py`:gerencia as salas de amigo oculto, seus membros e o envio de e-mails.
 
 ### `models/`
 Define as classes que representam os dados da aplicação. Exemplo:
@@ -102,7 +102,7 @@ Define as classes que representam os dados da aplicação. Exemplo:
 Responsável por salvar, carregar e manipular dados usando arquivos JSON. Exemplo:
 - `user_service.py`: encapsula toda a lógica de negócios relacionada a usuários.
 - `auth_service.py`:fornece funções utilitárias para gerenciar o estado de login do usuário
-  `room_service.py`:encapsula a lógica de negócios relacionada às salas de Amigo Oculto.
+  `room_service.py`:encapsula a lógica de negócios relacionada às salas de amigo oculto.
 
 ### `views/`
 Contém os arquivos `.tpl` utilizados pelo Bottle como páginas HTML:
