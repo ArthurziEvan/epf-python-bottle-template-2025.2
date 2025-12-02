@@ -62,7 +62,7 @@ poo-python-bottle-template/
 │       ├── main.js
 │       └── util.js
 |
-├── views/ # Camada de Apresentação (Templates Bottle) - Renderiza o HTML final.
+├── views/ # Parte do  HTML.
 │   ├── helper-final.tpl
 │   ├── home.tpl
 │   ├── join_room.tpl
