@@ -48,7 +48,7 @@ poo-python-bottle-template/
 │   ├── room.py
 │   └── user.py
 |
-├── services/ # Camada de Serviço (Lógica de Negócio) - Contém regras como hashing de senha, sorteio de salas, e validações.
+├── services/ # Camada de Serviço (Lógica de Negócio) - Contém regras de senha, sorteio de salas, e validações.
 │   ├── __pycache__
 │   ├── auth_service.py
 │   ├── room_service.py
@@ -107,7 +107,7 @@ Define as classes que representam os dados da aplicação. Exemplo:
 Responsável por salvar, carregar e manipular dados usando arquivos JSON. Exemplo:
 - `user_service.py`: encapsula toda a lógica de negócios relacionada a usuários.
 - `auth_service.py`:fornece funções utilitárias para gerenciar o estado de login do usuário
-  `room_service.py`:encapsula a lógica de negócios relacionada às salas de amigo oculto.
+- `room_service.py`:encapsula a lógica de negócios relacionada às salas de amigo oculto.
 
 ### `views/`
 Contém os arquivos `.tpl` utilizados pelo Bottle como páginas HTML:
