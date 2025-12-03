@@ -133,6 +133,12 @@ Arquivos estáticos como:
 Armazena os arquivos `.json` que simulam o banco de dados:
 - `users.json`: onde os dados dos usuários são persistidos.
 - `rooms.json`:onde os dados das salas são persistidos
+- 
+
+### `Diagrama de Classes`
+https://image2url.com/images/1764801953549-62356da4-97a4-4bb0-b92a-2c4f5b2130f4.png
+
+
 ---
 
 ## ▶️ Como Executar
