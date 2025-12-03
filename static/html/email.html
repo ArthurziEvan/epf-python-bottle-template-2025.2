@@ -1,58 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <style>
-    body {
-        background-color: #ffffff;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
-    .container {
-        max-width: 600px;
-        margin: auto;
-        background: black;
-        border-radius: 10px;
-        padding: 20px;
-    }
-    .header {
-        background: #ba0303;
-        color: white;
-        padding: 15px;
-        text-align: center;
-        font-size: 24px;
-        font-weight: bold;
-        border-radius: 10px 10px 0 0;
-    }
-    .assignment {
-        font-size: 20px;
-        font-weight: bold;
-        color: #ba0303;
-        margin: 20px 0;
-        text-align: center;
-    }
-    .footer {
-        margin-top: 20px;
-        text-align: center;
-        font-size: 12px;
-        color: #888;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        .card-box {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 0;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 3px solid #C8102E;
+        }
+
+        .top-bar {
+            background-color: #007749;
+            height: 10px;
+            border-bottom: 1px solid #FFD700;
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #C8102E, #D90404, #C8102E);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 5px solid #8B0000;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+
+        .card-content {
+            padding: 25px;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.7;
+            background-color: #ffffff;
+        }
+
+        .card-content p {
+            margin-bottom: 15px;
+        }
+
+        .secret-title {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 19px;
+            font-weight: bold;
+            color: #007749;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .secret-box {
+            background: #ffebeb;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #C8102E;
+            border: 3px dashed #FFD700;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-footer {
+            background: #f4f4f4;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #ddd;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="header">Seu Amigo Oculto</div>
+    <div class="card-box">
 
-      <i></i>
+        <div class="top-bar"></div>
 
-    <p>Olá, <strong>{{giver}}</strong>!</p>
+        <div class="card-header">
+            🎄🎁 Feliz Amigo Oculto! 🎁🎄
+        </div>
 
-    <p>Seu Amigo Oculto é:</p>
+        <div class="card-content">
+            <p>Ho ho ho, <strong>{{giver}}</strong>! 🎅✨</p>
 
-    <div class="assignment">{{receiver}}</div>
+            <p>O sorteio foi realizado com sucesso, e aqui está o grande momento:</p>
 
-    <div class="footer">Mensagem automática. Não responda.</div>
-  </div>
+            <div class="secret-title">Seu Amigo Oculto é</div>
+
+            <div class="secret-box">
+                🎁 {{receiver}} 🎁
+            </div>
+
+            <p>Agora é só preparar o presente com carinho e entrar no clima natalino</p>
+        </div>
+        
+        <div class="card-footer"></div>
+    </div>
 </body>
 </html>
