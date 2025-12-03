@@ -37,7 +37,7 @@ poo-python-bottle-template/
 │   ├── room_controller.py
 │   └── user_controller.py
 |
-├── data/ # Armazenamento de Dados (Arquivos JSON)
+├── data/ # Armazenamento de Dados 
 │   ├── session_locks
 │   ├── sessions
 │   ├── rooms.json
@@ -48,13 +48,13 @@ poo-python-bottle-template/
 │   ├── room.py
 │   └── user.py
 |
-├── services/ # Camada de Serviço (Lógica de Negócio) - Contém regras de senha, sorteio de salas, e validações.
+├── services/ # Camada de Serviço (Lógica de Negócio) - Contém regras de senha, sorteio de salas
 │   ├── __pycache__
 │   ├── auth_service.py
 │   ├── room_service.py
 │   └── user_service.py
 |
-├── static/ # Arquivos Estáticos (CSS, JS, Imagens)
+├── static/ # Arquivos Estáticos
 │   ├── css/
 │   │   ├── helper.css
 │   │   └── style.css
