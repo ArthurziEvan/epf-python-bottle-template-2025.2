@@ -8,6 +8,11 @@ Utiliza o microframework **Bottle**. Ideal para uso em disciplinas introdutória
 
 Fornecer uma base simples, extensível e didática para construção de aplicações web orientadas a objetos com aplicações WEB em Python, ideal para trabalhos finais ou exercícios práticos.
 
+
+## 💡 Descrição do Projeto
+
+O projeto se baseia em um um sorteador de amigo oculto, baseado em aplicações web orientadas a objetos com Python, a aplicação é responsável por cadastrar e sortear as pessoas numa sala de amigo oculto e sorteá-las e enviar o resultado por email
+
 ---
 
 ## 🗂 Estrutura de Pastas
@@ -121,6 +126,8 @@ Arquivos estáticos como:
 - `css/style.css`: estilos básicos.
 - `js/main.js`: scripts JS opcionais.
 - `img/BottleLogo.png`: exemplo de imagem.
+- `email.html`: Estrutura do email enviado 
+
 
 ### `data/`
 Armazena os arquivos `.json` que simulam o banco de dados:
