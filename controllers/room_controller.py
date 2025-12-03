@@ -1,3 +1,6 @@
+import smtplib
+from email.mime.text import MIMEText
+
 from bottle import request, Bottle, response
 
 from controllers.base_controller import BaseController
@@ -19,6 +22,7 @@ class RoomController(BaseController):
         self.app.route('/rooms/delete/<room_id>', method='POST', callback=lock_login(self.delete_room))
         self.app.route('/rooms/sort/<room_id>', method=['GET', 'POST'], callback=lock_login(self.sort))
         self.app.route('/rooms/join', method=['GET', 'POST'], callback=lock_login(self.join_room))
+        self.app.route('/rooms/email/<room_id>', method=['GET', 'POST'], callback=self.email)
 
         self.app.route('/rooms/<room_id>', method=['GET', 'POST'], callback=lock_login(self.room))
 
@@ -34,7 +38,7 @@ class RoomController(BaseController):
 
     def add_room(self):
         if request.method == 'GET':
-            return self.render('room_form', rooms=None, user=get_user_login(self.user_service), action="/rooms/add")
+            return self.render('room_form.tpl', rooms=None, user=get_user_login(self.user_service), action="/rooms/add")
         else:
             self.room_service.save()
             return self.redirect('/rooms')
@@ -42,7 +46,7 @@ class RoomController(BaseController):
 
     def join_room(self):
         if request.method == 'GET':
-            return self.render('join_room', user=get_user_login(self.user_service))
+            return self.render('join_room.tpl', user=get_user_login(self.user_service))
         else:
             user = get_user_login(self.user_service)
             room_id = request.forms.get('room_id')
@@ -50,10 +54,10 @@ class RoomController(BaseController):
             room = self.room_service.get_by_id(room_id)
 
             if not room:
-                return self.render('join_room', error="Sala não encontrada.", user=user)
+                return self.render('join_room.tpl', error="Sala não encontrada.", user=user)
 
             if user.id == room.host_id or user.id in room.members:
-                return self.render('join_room', error="Você já é membro dessa sala.", user=user)
+                return self.render('join_room.tpl', error="Você já é membro dessa sala.", user=user)
 
             room.members.append(user.id)
             self.room_service.edit_room(room_id, room)
@@ -80,6 +84,45 @@ class RoomController(BaseController):
 
         room = self.room_service.get_by_id(room_id)
         self.room_service.sort(room)
+
+        return self.redirect(f'/rooms/{room_id}')
+
+
+    def email(self, room_id):
+
+        user = get_user_login(self.user_service)
+        room = self.room_service.get_by_id(room_id)
+        if user.id != room.host_id:
+            return self.home_redirect()
+
+        email = "xingxungu2601@gmail.com"
+        password = "rxqnsqdyhzrnubgg"
+        template_dir = "./static/html/email.html"
+
+        smtp = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+        smtp.login(email, password)
+
+        for giver_id, receiver_id in room.chosen.items():
+
+            giver = self.user_service.get_by_id(giver_id)
+            receiver = self.user_service.get_by_id(receiver_id)
+
+            with open(template_dir, "r", encoding='utf-8') as f:
+                html = f.read()
+
+            html = html.replace("{{giver}}", giver.name)
+            html = html.replace("{{receiver}}", receiver.name)
+
+            subject = "Seu Amigo Oculto..."
+
+            msg = MIMEText(html, "html")
+            msg["Subject"] = subject
+            msg["From"] = email
+            msg["To"] = giver.email
+
+            smtp.sendmail(email, giver.email, msg.as_string())
+
+        smtp.quit()
 
         return self.redirect(f'/rooms/{room_id}')
 

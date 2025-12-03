@@ -7,7 +7,7 @@
         <h1>{{users[room.chosen[str(user.id)]]}}</h1>
 
         % if user.id == room.host_id:
-            <a href="javascript:void(0)" onclick="email('{{room.id}}')" class="btn btn-primary"><i class="fas fa-envelope"></i> Mandar Resultados por Email</a>
+            <a href="/rooms/email/{{room.id}}" class="btn btn-primary"><i class="fas fa-envelope"></i> Mandar Resultados por Email</a>
         % end
     </section>
 

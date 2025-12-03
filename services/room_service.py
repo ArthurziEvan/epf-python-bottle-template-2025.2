@@ -1,5 +1,7 @@
 import random
+import smtplib
 import string
+from email.mime.text import MIMEText
 
 from bottle import request
 
@@ -63,7 +65,6 @@ class RoomService:
 
         room.sorted = True
         self.room_model.update_room(room)
-
 
 
     def get_by_id(self, room_id):
