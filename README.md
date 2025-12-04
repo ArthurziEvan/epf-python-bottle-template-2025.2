@@ -136,7 +136,7 @@ Armazena os arquivos `.json` que simulam o banco de dados:
 
 ### `Diagrama de Classes`
 
-https://image2url.com/images/1764816158326-15ff7bf1-3c15-4066-8319-a162435403c1.png
+https://image2url.com/images/1764816344804-b1f283e1-62df-44b0-8bb6-41dc6ab63ee0.png
 
 ------------------------------------
 
